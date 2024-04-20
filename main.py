@@ -1,6 +1,9 @@
-import streamlit as st
-st.set_page_config(page_title="Calculadora de Honorários Adv!", page_icon="🖩", layout="centered")
 import pandas as pd
+
+import streamlit as st
+
+st.set_page_config(page_title="Calculadora de Honorários Adv!", page_icon="🖩", 
+                   layout="centered")
 
 # Título do aplicativo
 st.title('Calculadora de Honorários Advocatícios')
@@ -9,6 +12,8 @@ st.title('Calculadora de Honorários Advocatícios')
 valor_total_creditado = st.number_input('Insira o valor total creditado na conta do escritório (R$)', min_value=0.0, format='%f')
 porcentagem_sucumbencia = st.number_input('Insira a porcentagem dos honorários de sucumbência (%)', min_value=0.0, format='%f')
 porcentagem_contratual = st.number_input('Insira a porcentagem dos honorários contratuais (%)', min_value=0.0, format='%f')
+quantidade_advogados = st.number_input('Insira a quantidade de advogados', min_value=1, format='%f')
+
 
 if st.button('Calcular'):
     # Ajustando o cálculo para considerar que a porcentagem de sucumbência se aplica sobre a condenação
@@ -27,7 +32,7 @@ if st.button('Calcular'):
     valor_escritorio = honorarios_sucumbencia + honorarios_contratuais
 
     # Dividindo o total de honorários por dois
-    divisao_honorarios = valor_escritorio / 2
+    divisao_honorarios = valor_escritorio / quantidade_advogados
 
     # Função para formatar valores monetários
     def formatar_valor(valor):
