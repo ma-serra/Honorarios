@@ -5,9 +5,7 @@ import main
 from conceitos import get_conceito
 
 # Cabeçalho de toda página do projeto
-st.set_page_config("Calculadora de Honorários Advocatícios!", "calculadora_svg.svg")
-
-st.image("calculadora_svg.svg", width=75)
+st.image("calculadora_svg.svg", width=50)
 
 main.sidebar()
 

@@ -1,8 +1,0 @@
-[theme]
-primaryColor = "#fff"
-backgroundColor = "#fff"
-secondaryBackgroundColor = "#fff"
-textColor = "#333"
-font = "sans-serif"
-[menu]
-visible = false

@@ -3,11 +3,10 @@ import streamlit as st
 import main
 from proximospassos import get_proximos_passos
 
-st.set_page_config("Calculadora de Honorários Advocatícios!", "calculadora_svg.svg")
-
 main.sidebar()
 
-st.image("calculadora_svg.svg", width=75)
+st.image("calculadora_svg.svg", width=50)
+
 
 st.write(
     """

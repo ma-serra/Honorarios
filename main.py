@@ -1,8 +1,8 @@
 import re
 
 import pandas as pd
-import streamlit as st
 
+import streamlit as st
 
 # Função para validar o número do processo
 def validar_processo(numero):
@@ -28,18 +28,16 @@ def sidebar():
                           Contribua para o projeto pela chave PIX:
                           pdenm9@gmail.com""")
 
-
 # Configuração da página
-st.set_page_config("Calculadora de Honorários Adv!", "calculadora_svg.svg")
+st.set_page_config(page_icon="calculadora_svg.svg", page_title="Calculadora de Honorários Adv!")
+
 
 # Imagem da calculadora e Título do aplicativo.
-
-st.image('calculadora_svg.svg', width=75)
+st.image("calculadora_svg.svg", width=50)
 
 st.title('Calculadora de Honorários Advocatícios!', anchor=False)
 
 sidebar()
-
 
 # Entrada de dados
 processo = st.text_input('Insira o número do processo:',
@@ -55,7 +53,7 @@ valor_total_creditado = st.number_input(
 # Exibir o valor formatado
 if valor_total_creditado:
     valor_formatado = formatar_valor(valor_total_creditado)
-    st.write(f"**Valor creditado: _{valor_formatado}_**")
+    st.write(f"**Valor creditado: _{valor_formatado}**")
 else:
     st.write("INSIRA O VALOR TOTAL CREDITADO NA CONTA DO ESCRITÓRIO")
 
@@ -154,6 +152,5 @@ if st.button('Calcular'):
     # Botão para baixar a tabela como CSV     
     
     st.download_button(label='Baixar tabela', data=csv_bytes, file_name='tabela.csv', mime='text/csv')
-
     
     st.divider()
