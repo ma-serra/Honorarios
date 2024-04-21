@@ -88,7 +88,7 @@ if st.button('Calcular'):
 
     # Calculando o valor dos honorários de sucumbência
     honorarios_sucumbencia = calcular_honorario(valor_condenacao,
-                                                porcentagem_contratual)
+                                                porcentagem_sucumbencia)
 
     # Calculando honorários contratuais sobre a condenação
     honorarios_contratuais = calcular_honorario(valor_condenacao,
