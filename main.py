@@ -9,9 +9,8 @@ functions.sidebar()
 processo = st.text_input('Insira o número do processo:', placeholder='Ex: 0123456-00.2099.8.05.0001')
 autor = st.text_input('Insira o nome do autor:', placeholder='Nome do autor.')
 valor_total_creditado = st.number_input('Insira o valor total creditado na conta do escritório (R$):', placeholder='R$ 0,00')
-
-porcentagem_sucumbencia = st.number_input('Insira a porcentagem dos honorários de sucumbência (%):', min_value=0.0, format="%.2f")
-porcentagem_contratual = st.number_input('Insira a porcentagem dos honorários contratuais (%):', min_value=0.0, format="%.2f")
+porcentagem_sucumbencia = st.number_input('Insira a porcentagem dos honorários de sucumbência (%):', min_value=0.0)
+porcentagem_contratual = st.number_input('Insira a porcentagem dos honorários contratuais (%):', min_value=0.0)
 quantidade_advogados = st.number_input('Insira a quantidade de advogados', min_value=1)
 
 # Botão de cálculo e lógica
