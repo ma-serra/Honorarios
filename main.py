@@ -1,97 +1,45 @@
-import re
-
 import pandas as pd
-
 import streamlit as st
-
-# Função para validar o número do processo
-def validar_processo(numero):
-  # Regex para verificar o formato: 0123456-00.2099.8.05.0001
-  pattern = r'^\d{7}-\d{2}\.\d{4}\.\d\.\d{2}\.\d{4}$'
-  return re.match(pattern, numero) is not None
-
-
-# Função para calcular o valor do Honorário
-def calcular_honorario(valor_total, porcentagem):
-  return valor_total * (porcentagem / 100)
-
-# Função formatar valor com duas casas decimais e separador de milhar
-def formatar_valor(valor):
-  valor_formatado = f"{valor:,.2f}"
-  return "R$ " + valor_formatado.replace(',', 'X').replace('.', ',').replace('X', '.')
-
-# Cria sidebar
-def sidebar():
-  st.sidebar.title('Informações')
-
-  st.sidebar.markdown(f"""Desenvolvido por **PdeNM9**.
-                          Contribua para o projeto pela chave PIX:
-                          pdenm9@gmail.com""")
+import functions
 
 # Configuração da página
 st.set_page_config(page_icon="calculadora_svg.svg", page_title="Calculadora de Honorários Adv!")
-
-
-# Imagem da calculadora e Título do aplicativo.
 st.image("calculadora_svg.svg", width=50)
-
 st.title('Calculadora de Honorários Advocatícios!', anchor=False)
-
-sidebar()
+functions.sidebar()
 
 # Entrada de dados
-processo = st.text_input('Insira o número do processo:',
-                         placeholder='Ex: 0123456-00.2099.8.05.0001')
-
+processo = st.text_input('Insira o número do processo:', placeholder='Ex: 0123456-00.2099.8.05.0001')
 autor = st.text_input('Insira o nome do autor:', placeholder='Nome do autor.')
+valor_total_creditado = st.number_input('Insira o valor total creditado na conta do escritório (R$):', placeholder='R$ 0,00')
 
-valor_total_creditado = st.number_input(
-    'Insira o valor total creditado na conta do escritório (R$):',
-    min_value=0,
-    placeholder='R$ 0,00')
+porcentagem_sucumbencia = st.number_input('Insira a porcentagem dos honorários de sucumbência (%):', min_value=0.0, format="%.2f")
+porcentagem_contratual = st.number_input('Insira a porcentagem dos honorários contratuais (%):', min_value=0.0, format="%.2f")
+quantidade_advogados = st.number_input('Insira a quantidade de advogados', min_value=1)
 
-# Exibir o valor formatado
-if valor_total_creditado:
-    valor_formatado = formatar_valor(valor_total_creditado)
-    st.write(f"**Valor creditado: _{valor_formatado}**")
-else:
-    st.write("INSIRA O VALOR TOTAL CREDITADO NA CONTA DO ESCRITÓRIO")
-
-porcentagem_sucumbencia = st.number_input(
-    'Insira a porcentagem dos honorários de sucumbência (%):',
-    min_value=0,
-    placeholder='%')
-
-porcentagem_contratual = st.number_input(
-    'Insira a porcentagem dos honorários contratuais (%):',
-    min_value=0,
-    placeholder='%')
-quantidade_advogados = st.number_input('Insira a quantidade de advogados',
-                                       min_value=1)
-
+# Botão de cálculo e lógica
 if st.button('Calcular'):
-  if valor_total_creditado == 0:
-    st.error(
-        'O valor total creditado não pode ser zero. Cálculo não realizado.')
-  if processo:
-    if validar_processo(processo):
-      st.success("Número do processo válido!", icon="✅")
+    try:
+        st.write("Valor formatado:", functions.formatar_valor(valor_total_creditado))
+    except ValueError:
+        st.error("Por favor, insira um número válido para o valor total creditado.")
 
+    if functions.validar_processo(processo):
+        # Restante do código de cálculo, assumindo que o valor total e o número do processo são válidos.
+        pass
     else:
-      st.error(
-          "Formato inválido! Por favor, insira o número no formato 0123456-00.2099.8.05.0001."
-      )
+        st.error("Formato inválido! Por favor, insira o número no formato 0123456-00.2099.8.05.0001.")
+
 
     # Calculando a sucumbência sobre a condenação.
-    valor_condenacao = valor_total_creditado / (1 +
-                                                porcentagem_sucumbencia / 100)
+    valor_condenacao = valor_total_creditado / (1 + porcentagem_sucumbencia / 100)
 
     # Calculando o valor dos honorários de sucumbência
-    honorarios_sucumbencia = calcular_honorario(valor_condenacao,
+    honorarios_sucumbencia = functions.calcular_honorario(valor_condenacao,
                                                 porcentagem_sucumbencia)
 
     # Calculando honorários contratuais sobre a condenação
-    honorarios_contratuais = calcular_honorario(valor_condenacao,
+    honorarios_contratuais = functions.calcular_honorario(valor_condenacao,
                                                 porcentagem_contratual)
 
     # Calculando o valor a ser transferido para a parte
@@ -116,13 +64,13 @@ if st.button('Calcular'):
             f'Valor para cada advogado: ({quantidade_advogados})'
         ],
         'Valor': [
-            formatar_valor(valor_total_creditado),
-            formatar_valor(honorarios_sucumbencia),
-            formatar_valor(valor_condenacao),
-            formatar_valor(honorarios_contratuais),
-            formatar_valor(valor_para_parte),
-            formatar_valor(valor_escritorio),
-            formatar_valor(divisao_honorarios)
+            functions.formatar_valor(valor_total_creditado),
+            functions.formatar_valor(honorarios_sucumbencia),
+            functions.formatar_valor(valor_condenacao),
+            functions.formatar_valor(honorarios_contratuais),
+            functions.formatar_valor(valor_para_parte),
+            functions.formatar_valor(valor_escritorio),
+            functions.formatar_valor(divisao_honorarios)
         ]
     }
 
