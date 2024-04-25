@@ -2,10 +2,7 @@ import pandas as pd
 import streamlit as st
 import functions
 
-# Configuração da página
-st.set_page_config(page_icon="calculadora_svg.svg", page_title="Calculadora de Honorários Adv!")
-st.image("calculadora_svg.svg", width=50)
-st.title('Calculadora de Honorários Advocatícios!', anchor=False)
+functions.página_inicial()
 functions.sidebar()
 
 # Entrada de dados
