@@ -1,13 +1,14 @@
 import streamlit as st
 
-import main
+import functions
 
 from conceitos import get_conceito
 
 # Cabeçalho de toda página do projeto
 st.image("calculadora_svg.svg", width=50)
 
-main.sidebar()
+functions.sidebar()
+functions.página_inicial()
 
 # Fim do cabeçalho
 

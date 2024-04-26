@@ -1,9 +1,10 @@
 # RoadMap.py
 import streamlit as st
-import main
+import functions
 from proximospassos import get_proximos_passos
 
-main.sidebar()
+functions.sidebar()
+functions.página_inicial()
 
 st.image("calculadora_svg.svg", width=50)
 
