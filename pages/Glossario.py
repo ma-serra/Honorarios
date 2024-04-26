@@ -8,7 +8,6 @@ from conceitos import get_conceito
 st.image("calculadora_svg.svg", width=50)
 
 functions.sidebar()
-functions.pagina_inicial()
 
 # Fim do cabeçalho
 
