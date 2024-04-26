@@ -4,7 +4,7 @@ import functions
 from proximospassos import get_proximos_passos
 
 functions.sidebar()
-functions.página_inicial()
+functions.pagina_inicial()
 
 st.image("calculadora_svg.svg", width=50)
 

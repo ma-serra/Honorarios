@@ -3,7 +3,7 @@ import re
 from num2words import num2words
 
 # Configurações da página inicial
-def página_inicial():
+def pagina_inicial():
     st.set_page_config(page_icon="calculadora_svg.svg", page_title="Calculadora de Honorários Adv!")
     st.image("calculadora_svg.svg", width=50)
     st.title('Calculadora de Honorários Advocatícios!', anchor=False)
