@@ -16,7 +16,9 @@ quantidade_advogados = st.number_input('Insira a quantidade de advogados', min_v
 # Botão de cálculo e lógica
 if st.button('Calcular'):
     try:
-        st.write("Valor formatado:", functions.formatar_valor(valor_total_creditado))
+      valor_formatado = functions.formatar_valor(valor_total_creditado)
+      valor_extenso = functions.valor_por_extenso(valor_total_creditado)
+      st.write(f"Valor creditado: {valor_formatado} ({valor_extenso})")
     except ValueError:
         st.error("Por favor, insira um número válido para o valor total creditado.")
 

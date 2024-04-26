@@ -1,5 +1,6 @@
 import streamlit as st
 import re
+from num2words import num2words
 
 # Configurações da página inicial
 def página_inicial():
@@ -25,3 +26,7 @@ def formatar_valor(valor):
 def sidebar():
     st.sidebar.title('Informações')
     st.sidebar.markdown(f"""Desenvolvido por **PdeNM9**. Contribua para o projeto pela chave PIX: pdenm9@gmail.com""")
+
+# Converte o valor para texto por extenso em português
+def valor_por_extenso(valor):
+    return num2words(valor, lang='pt_BR', to='currency')
