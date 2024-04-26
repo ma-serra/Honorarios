@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import functions
 
-functions.página_inicial()
+functions.pagina_inicial()
 functions.sidebar()
 
 # Entrada de dados
