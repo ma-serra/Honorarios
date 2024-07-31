@@ -61,6 +61,7 @@ def get_day_name_pt_br(date):
 def main():
     st.image("Bandeira_da_Bahia.svg", width=50)
     st.title("Calculadora de Prazos: Bahia!")
+    st.page_link("https://www.tjba.jus.br/portal/calendario/", label="Consulte o calendário oficial CLICANDO AQUI!", icon="📅")
     
     br_holidays = holidays.BR(state='BA')
 
