@@ -3,6 +3,8 @@ import datetime
 import pandas as pd
 import holidays
 
+st.set_page_config(page_icon="Bandeira_da_Bahia.svg", page_title="Calculadora de Prazos: Bahia!")
+
 # Mapeamento dos dias da semana para português do Brasil
 DAYS_PT_BR = {
     "Monday": "Segunda",
