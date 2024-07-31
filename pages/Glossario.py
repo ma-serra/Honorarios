@@ -9,7 +9,6 @@ st.image("calculadora_svg.svg", width=50)
 
 functions.sidebar()
 
-# Fim do cabeçalho
 
 # 
 st.write(
